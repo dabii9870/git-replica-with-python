@@ -71,10 +71,23 @@ def create_user():
         messagebox.showinfo("Success", "User created successfully!")
     except sqlite3.IntegrityError:
         messagebox.showerror("Error", "Name or phone number already exists.")
+#login funtion 
+def login_user():
+    name = name_entry.get()
+    phone = phone_entry.get()
+    password = password_entry.get()
+
+    cursor.execute('''SELECT * FROM users WHERE name=? AND phone=? AND password=?''', (name, phone, password))
+    user = cursor.fetchone()
+
+    if user:
+        messagebox.showinfo("Success", f"Welcome, {user[1]}!")
+    else:
+        messagebox.showerror("Error", "Invalid name, phone number, or password.")
 
 signup_button = Button(root, text='Sign Up', font=('Segoe UI', 14), bg='green', fg='white', command=create_user)
 signup_button.place(x=300, y=250, width=200 )
-login_button = Button(root, text='Login', font=('Segoe UI', 14), bg='blue', fg='white')
+login_button = Button(root, text='Login', font=('Segoe UI', 14), bg='blue', fg='white', command=login_user)
 login_button.place(x=300, y=300, width=200 )
 
 #mainloop
