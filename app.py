@@ -74,7 +74,8 @@ def create_user():
 
 signup_button = Button(root, text='Sign Up', font=('Segoe UI', 14), bg='green', fg='white', command=create_user)
 signup_button.place(x=300, y=250, width=200 )
-
+login_button = Button(root, text='Login', font=('Segoe UI', 14), bg='blue', fg='white')
+login_button.place(x=300, y=300, width=200 )
 
 #mainloop
 root.mainloop()
